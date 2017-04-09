@@ -1,0 +1,29 @@
+{
+    "clusters": [
+        {
+            "nodes": [
+            {% for node in storage_nodes %}
+                {
+                    "node": {
+                        "hostnames": {
+                            "manage": [
+                                "{{ node }}"
+                            ],
+                            "storage": [
+                                "{{ storage_hosts[loop.index-1]}}"
+                            ]
+                        },
+                        "zone": {{loop.index}}
+                    },
+                    "devices": [
+                       {% for device in storage_devices %}
+                       "{{device}}"{% if not loop.last %},
+                       {% endif %}
+                       {% endfor %}
+                    ]
+                }{% if not loop.last %},{% endif %}
+            {% endfor %}
+            ]
+        }
+    ]
+}

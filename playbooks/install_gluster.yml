@@ -1,0 +1,30 @@
+# Subscripe all nodes to Gluster storage subsctiption
+- hosts: nodes
+  gather_facts: false
+  roles:
+    - { role: gluster_subscribe }
+
+# Prepare nodes that are using Gluster storage
+- hosts: nodes
+  gather_facts: false
+  roles:
+    - { role: gluster_prereqs_client }
+
+# Prepare nodes that are running Gluster storage
+- hosts: "{{storage_nodes_for_ansible}}"
+  gather_facts: false
+  roles:
+    - { role: gluster_prereqs_node }
+
+# Install Gluster storage from first master
+- hosts: masters[0]
+  gather_facts: false
+  roles:
+    - { role: gluster_prereqs_deploy }
+    - { role: gluster_install}
+
+# Subscribe all nodes back to Openshift subscription
+- hosts: nodes
+  gather_facts: false
+  roles:
+    - { role: ocp_subscribe, openshift_installation_type == "enterprise" }

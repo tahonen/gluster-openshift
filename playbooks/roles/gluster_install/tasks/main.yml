@@ -1,0 +1,63 @@
+- name: Create storage project
+  command: 'oc adm new-project {{project_name}} --node-selector=""'
+  ignore_errors: yes
+  tags: gluster-install
+- name: Modify scc
+  command: 'oc adm policy add-scc-to-user privileged -z default -n {{project_name}}"'
+  tags: gluster-install
+- name: Create topology file
+  template:
+    src: topology.j2
+    dest: "{{topology_file}}"
+- name: Hack etc hosts file for heketi deployer
+  lineinfile:
+    dest: /tmp/hosts
+    state: present
+    line: "{{openshift_router_ip}} deploy-heketi-{{project_name}}.{{openshift_apps_domain}}"
+- name: Hack etc hosts file for heketi
+  lineinfile:
+    dest: /tmp/hosts
+    state: present
+    line: "{{openshift_router_ip}} heketi-{{project_name}}.{{openshift_apps_domain}}"
+- name: Deploy Gluster
+  command: "cns-deploy -n {{project_name}}  -y -c oc -g {{topology_file}}"
+  tags: gluster-install
+- name: Remove deployment triggers
+  command: "oc set triggers dc/heketi --from-config --remove -n {{project_name}} "
+  tags: gluster-post-install
+- name: Create heketi config
+  template:
+    src: heketi.j2
+    dest: "{{config_file}}"
+- name: Create configmap for heketi.json
+  command: "oc create configmap heketiconfig --from-file={{ config_file }} -n {{project_name}} "
+  tags: gluster-post-install
+- name: Add configmap to heketi DC
+  command: "oc volume dc/heketi --add --name=config -t configmap --configmap-name=heketiconfig -m /etc/heketi -n {{project_name}} "
+  tags: gluster-post-install
+- name: Create glusterfs secret yaml
+  template:
+    src: glusterfs-secret.j2
+    dest: "{{secret_file}}"
+  tags: gluster-post-install
+- name: Create heketi secrets object
+  command: "oc create -f {{ secret_file }}"
+  tags: gluster-post-install
+- name: Create glusterfs storage class yaml
+  template:
+    src: glusterfs-storageclass.j2
+    dest: "{{ storageclass_file }}"
+  tags: gluster-post-install
+- name: Create storage class object
+  command: "oc create -f {{ storageclass_file }} -n {{ project_name }} "
+  tags: gluster-post-install
+- name: Remove etc hosts file hack for heketi-deployer
+  lineinfile:
+    dest: /tmp/hosts
+    state: absent
+    line: "{{openshift_router_ip}} deploy-heketi-{{project_name}}.{{openshift_apps_domain}}"
+- name: Remove etc hosts file hack for heketi
+  lineinfile:
+    dest: /tmp/hosts
+    state: absent
+    line: "{{openshift_router_ip}} heketi-{{project_name}}.{{openshift_apps_domain}}"

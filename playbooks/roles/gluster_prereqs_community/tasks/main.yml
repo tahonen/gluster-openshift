@@ -1,0 +1,4 @@
+- name: Prerequisites for upstream version
+  debug:
+    mgs: Installing upstream version
+  when: storage_installation_type == "upstream"
