@@ -16,9 +16,13 @@ openshift_apps_domain: apps.example.com
 openshift_router_ip: 1.1.1.4
 openshift_project_name: storage-project
 # List of hosts for ansible install Gluster storage nodes
+<<<<<<< HEAD
 storage_hosts_for_ansible: localhost
 # Hack to label nodes with zone=x.
 storage_zones: [1, 2, 3]
+=======
+storage_hosts_for_ansible: node1.example.com:node2.example.com:node3.example.com
+>>>>>>> 907f6c268836c48b11dea3f2659137fe8bc4a9a9
 # Openshift node names
 storage_nodes:
   - node1.example.com
