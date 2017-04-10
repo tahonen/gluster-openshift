@@ -5,6 +5,11 @@
 - name: Modify scc
   command: "oc adm policy add-scc-to-user privileged -z default -n {{project_name}}"
   tags: gluster-install
+- name: Add zone labels to nodes
+  command: "oc label node {{item.0}} zone={{item.1}} --overwrite"
+    with_together:
+      - "{{ storage_nodes }}"
+      - "{{ storage_zones }}"
 - name: Create topology file
   template:
     src: topology.j2
