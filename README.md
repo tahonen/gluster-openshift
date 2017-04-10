@@ -1,6 +1,6 @@
 # Install Gluster storage to Openshift
 
-DISCLAIMER: THIS SETUP WITH DEFAULT IS NOT FOR PRODUCTION USE!
+DISCLAIMER: THIS SETUP WITH DEFAULTS IS NOT FOR PRODUCTION USE!
 
 This ansible playbook is for installing container native storage (CNS) to Openshift Container Platform 3.4 and (Openshift Origin 1.4 NOT TESTED).
 
