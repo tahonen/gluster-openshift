@@ -16,7 +16,7 @@ openshift_apps_domain: apps.example.com
 openshift_router_ip: 1.1.1.4
 openshift_project_name: storage-project
 # List of hosts for ansible install Gluster storage nodes
-storage_hosts_for_ansible: localhost
+storage_hosts_for_ansible: node1.example.com:node2.example.com:node3.example.com
 # Openshift node names
 storage_nodes:
   - node1.example.com
