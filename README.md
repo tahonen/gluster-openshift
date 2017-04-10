@@ -37,6 +37,8 @@ List of Openshift nodes running storage, double check with `oc get nodes`
 List of storage hosts IP addresses. Must be in same order as nodes in storage_nodes
 #### storage_devices
 Devices that will be used as storage on storage hosts/nodes.
+#### storage_zones
+This is used as hack to label storage nodes with correct zone label. Must be in same order as nodes in storage_nodes var.
 
 # Installation
 
