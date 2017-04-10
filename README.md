@@ -53,3 +53,20 @@ ansible-playbook playbooks/install_gluster.yml
 After installation you can test was installation success by create app that needs storage like `oc new-app --template mongodb-persistent -p VOLUME_CAPACITY=1Gi`
 
 # Customize installation
+
+All template and config files are pretty much defauls that work. If you want to customize your installation you can change following files, but you need to know what you are doing :)
+
+#### playbooks/roles/gluster_install/templates/topology.j2
+Change this file if you want to create something else than single storage cluster with 3 zones.
+
+#### playbooks/roles/gluster_install/templates/heketi.j2
+Change if you need to change heketi config.
+
+#### playbooks/roles/gluster_install/templates/glusterfs-storageclass.j2
+Change if you need to modify or add stuff to storageclass definition. For example add labels.
+
+#### playbooks/roles/gluster_install/tasks/main.yml
+Change this file if you need to change how installation goes.
+
+
+
