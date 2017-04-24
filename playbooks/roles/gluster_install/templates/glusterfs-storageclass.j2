@@ -5,7 +5,7 @@ metadata:
   annotations:
     storageclass.beta.kubernetes.io/is-default-class: "true"
 parameters:
-  resturl: "http://heketi-{{ project_name }}.{{openshift_apps_domain}}"
+  resturl: "http://heketi-{{ openshift-project_name }}.{{openshift_apps_domain}}"
   restuser: {{ heketi_api_user }}
   secretName: heketi-secret
   secretNamespace: default
