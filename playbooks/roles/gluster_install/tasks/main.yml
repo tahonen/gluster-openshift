@@ -16,12 +16,12 @@
     dest: "{{topology_file}}"
 - name: Hack etc hosts file for heketi deployer
   lineinfile:
-    dest: /tmp/hosts
+    dest: /etc/hosts
     state: present
     line: "{{openshift_router_ip}} deploy-heketi-{{openshift_project_name}}.{{openshift_apps_domain}}"
 - name: Hack etc hosts file for heketi
   lineinfile:
-    dest: /tmp/hosts
+    dest: /etc/hosts
     state: present
     line: "{{openshift_router_ip}} heketi-{{openshift_project_name}}.{{openshift_apps_domain}}"
 - name: Deploy Gluster
@@ -58,11 +58,11 @@
   tags: gluster-post-install
 - name: Remove etc hosts file hack for heketi-deployer
   lineinfile:
-    dest: /tmp/hosts
+    dest: /etc/hosts
     state: absent
     line: "{{openshift_router_ip}} deploy-heketi-{{openshift_project_name}}.{{openshift_apps_domain}}"
 - name: Remove etc hosts file hack for heketi
   lineinfile:
-    dest: /tmp/hosts
+    dest: /etc/hosts
     state: absent
     line: "{{openshift_router_ip}} heketi-{{openshift_project_name}}.{{openshift_apps_domain}}"
