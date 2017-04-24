@@ -2,7 +2,7 @@
 
 DISCLAIMER: THIS SETUP WITH DEFAULTS IS NOT FOR PRODUCTION USE!
 
-This ansible playbook is for installing container native storage (CNS) to Openshift Container Platform 3.4 and (Openshift Origin 1.4 NOT TESTED).
+This ansible playbook is for installing container native storage (CNS) to Openshift Container Platform 3.4+ and (Openshift Origin 1.4 NOT TESTED).
 
 # What you need to get this rocking
 
