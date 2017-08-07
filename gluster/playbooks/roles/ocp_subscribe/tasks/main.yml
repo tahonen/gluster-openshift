@@ -5,4 +5,4 @@
   ignore_errors: yes
   command: subscription-manager attach --pool={{ openshift_subscription_pool_id }}
 - name: enable gluster repos
-  command: "subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-ose-{{openshift_version}}-rpms"
+  command: "subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-extras-rpms --enable=rhel-7-server-ose-{{openshift_version}}-rpms --enable=rhel-7-fast-datapath-rpms --enable=rhel-7-server-optional-rpms"

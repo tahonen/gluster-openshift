@@ -1,0 +1,40 @@
+# Openshift subscription pool id
+openshift_subscription_pool_id: xyz
+# Storage pool id
+subscription_pool_id: xyz
+# Openshift installation type enterprise | upstream
+openshift_installation_type: enterprise
+# Openshift version, used to active correct repos
+openshift_version: 3.5
+# Heketi access control stuff
+heketi_user_key: glusteruser
+heketi_admin_key: glusteruser
+heketi_api_user: admin
+# Wildcard DNS for Openshift router
+openshift_apps_domain: t-paas.infra.vs.ch
+# Openshift router IP
+openshift_router_ip: 
+openshift_project_name: cns
+# List of hosts for ansible install Gluster storage nodes
+storage_hosts_for_ansible: oscpstor-t01.infra.vs.ch,oscpstor-t01.infra.vs.ch,oscpstor-t01.infra.vs.ch 
+# Hack to label nodes with zone=x.
+storage_zones: [1, 2, 3]
+# Openshift node names
+storage_nodes:
+  - oscpstor-t01.infra.vs.ch
+  - oscpstor-t02.infra.vs.ch
+  - oscpstor-t03.infra.vs.ch
+# VM IP addresses
+storage_hosts:
+  - 10.76.24.90
+  - 10.76.24.91
+  - 10.76.24.92
+# Empty bricks used for storage
+storage_devices:
+  - /dev/sdc
+  - /dev/sdd
+# Default file locations for installation temp files
+topology_file: /tmp/topology.json
+config_file: /tmp/heketi.json
+secret_file: /tmp/glusterfs-secret.yaml
+storageclass_file: /tmp/gluster-storageclass.yaml
