@@ -2,12 +2,12 @@
 
 DISCLAIMER: THIS SETUP WITH DEFAULTS IS NOT FOR PRODUCTION USE!
 
-This ansible playbook is for installing container native storage (CNS) to Openshift Container Platform 3.4+ and (Openshift Origin 1.4 NOT TESTED).
+This ansible playbook is for installing container native storage (CNS) to Openshift Container Platform 3.4+.
 
 # What you need to get this rocking
 
 - Ansible
-- OCP 3.4 with three app nodes
+- OCP 3.4+ (3.7 no tested yet) with three app nodes
 - Subscription for Gluster storage (eval or proper production one)
 - Access to OCP master via Ansible
 - At least one spare brick in each three Openshift app nodes
@@ -15,7 +15,7 @@ This ansible playbook is for installing container native storage (CNS) to Opensh
 
 # Setting up
 
-All variables that you need to change are in `vars.yml` file. 
+All variables that you need to change are in `vars.yml` file.
 
 You need to change at least following to match your env.
 
@@ -69,6 +69,3 @@ Change if you need to modify or add stuff to storageclass definition. For exampl
 
 #### playbooks/roles/gluster_install/tasks/main.yml
 Change this file if you need to change how installation goes.
-
-
-
