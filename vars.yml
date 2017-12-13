@@ -5,7 +5,7 @@ subscription_pool_id: xyz
 # Openshift installation type enterprise | upstream
 openshift_installation_type: enterprise
 # Openshift version, used to active correct repos
-openshift_version: 3.4
+openshift_version: 3.
 # Heketi access control stuff
 heketi_user_key: glusteruser
 heketi_admin_key: glusteruser
